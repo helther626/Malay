@@ -15,7 +15,7 @@ from Backend.helper.settings_manager import SettingsManager
 from Backend.logger import LOGGER
 
 def _currency_symbol(code):
-    return {"INR": "₹", "USD": "$", "EUR": "€", "GBP": "£", "JPY": "¥", "AUD": "A$", "CAD": "C$", "SGD": "S$", "AED": "د.إ", "BRL": "R$"}.get((code or "INR").upper(), f"{(code or 'INR')} ")
+    return {"INR": "₹", "USD": "$", "EUR": "€", "GBP": "£", "JPY": "¥", "AUD": "A$", "CAD": "C$", "SGD": "S$", "MYR": "RM", "AED": "د.إ", "BRL": "R$"}.get((code or "INR").upper(), f"{(code or 'INR')} ")
 
 
 
