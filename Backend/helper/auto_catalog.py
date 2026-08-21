@@ -39,6 +39,12 @@ AUTO_CATALOG_DEFINITIONS = [
     {"key": "sonyliv", "name": "SonyLIV", "group": "OTT"},
     {"key": "mx_player", "name": "MX Player", "group": "OTT"},
     {"key": "crunchyroll", "name": "Crunchyroll", "group": "OTT"},
+    
+    {"key": "malaysia_movies", "name": "Malaysia Movies", "group": "Malaysia"},
+    {"key": "malaysia_classics", "name": "Malaysia Classics", "group": "Malaysia"},
+    {"key": "malaysia_series", "name": "Malaysia Series", "group": "Malaysia"},
+    {"key": "recently_added_movies", "name": "Recently Added Movies", "group": "Recently Added"},
+    {"key": "recently_added_series", "name": "Recently Added Series", "group": "Recently Added"},
 ]
 
 CATALOG_BY_KEY = {item["key"]: item for item in AUTO_CATALOG_DEFINITIONS}
@@ -221,6 +227,18 @@ def classify_media_from_tmdb(doc: dict, details: dict, watch_data: dict, enabled
 
     if original_language == "ko" and media_type == "tv":
         tags.add("K-Drama")
+        
+    if "MY" in origin_country or "MY" in production_countries or original_language == "ms":
+        if media_type == "tv":
+            tags.add("Malaysia Series")
+        else:
+            tags.add("Malaysia Movies")
+
+    try:
+        if int(doc.get("release_year") or 0) <= datetime.utcnow().year - 10:
+            tags.add("Malaysia Classics")
+    except Exception:
+        pass
 
     genre_names = [g.get("name", "") for g in details.get("genres", []) or []]
     genre_lower = {g.lower() for g in genre_names}
