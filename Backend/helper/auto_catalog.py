@@ -239,8 +239,8 @@ def classify_media_from_tmdb(doc: dict, details: dict, watch_data: dict, enabled
                 tags.add("Malaysia Classics")
             elif 2000 <= release_year <= 2030:
                 tags.add("Malaysia Movies")
-       except Exception:
-        pass
+        except Exception:
+            pass
 
     genre_names = [g.get("name", "") for g in details.get("genres", []) or []]
     genre_lower = {g.lower() for g in genre_names}
