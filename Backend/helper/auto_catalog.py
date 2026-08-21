@@ -231,16 +231,16 @@ def classify_media_from_tmdb(doc: dict, details: dict, watch_data: dict, enabled
     if "MY" in origin_country or "MY" in production_countries or original_language == "ms":
         if media_type == "tv":
             tags.add("Malaysia Series")
-    else:
-        try:
-            release_year = int(doc.get("release_year") or 0)
+        else:
+            try:
+                release_year = int(doc.get("release_year") or 0)
 
-            if 1930 <= release_year <= 1999:
-                tags.add("Malaysia Classics")
-            elif 2000 <= release_year <= 2030:
-                tags.add("Malaysia Movies")
-        except Exception:
-            pass
+                if 1930 <= release_year <= 1999:
+                    tags.add("Malaysia Classics")
+                elif 2000 <= release_year <= 2030:
+                    tags.add("Malaysia Movies")
+            except Exception:
+                pass
 
     genre_names = [g.get("name", "") for g in details.get("genres", []) or []]
     genre_lower = {g.lower() for g in genre_names}
