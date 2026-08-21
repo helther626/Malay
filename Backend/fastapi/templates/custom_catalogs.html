@@ -1169,7 +1169,9 @@ async function runAutoSync() {
   btn.disabled = true;
   btn.textContent = '⏳ Syncing...';
   try {
-    const res = await fetch('/api/custom-catalogs/auto-sync', { method: 'POST' });
+   const res = await fetch('/api/custom-catalogs/auto-sync?force_refresh=true', {
+  method: 'POST'
+});
     const data = await res.json().catch(() => ({}));
     if (!res.ok) throw new Error(data.detail || 'Sync failed');
     const result = data.result || {};
