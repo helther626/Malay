@@ -55,6 +55,7 @@ class TVShowSchema(BaseModel):
     cast: Optional[List[str]] = None
     runtime: Optional[str] = None
     media_type: str
+    created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_on: datetime = Field(default_factory=datetime.utcnow)
     seasons: List[Season] = Field(default_factory=list)
     is_anime: Optional[bool] = False
@@ -85,6 +86,7 @@ class MovieSchema(BaseModel):
     cast: Optional[List[str]] = None
     runtime: Optional[str] = None
     media_type: str
+    created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_on: datetime = Field(default_factory=datetime.utcnow)
     telegram: Optional[List[QualityDetail]]
     is_anime: Optional[bool] = False
