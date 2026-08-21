@@ -1191,10 +1191,6 @@ async def configure_addon(token: str, request: Request):
 #----- Catalogs this token can see, in effective (token or global) order
 async def _addon_catalogs_for_token(token_data: dict) -> list:
     entries = [
-        {"id": "latest_movies", "name": "Latest Movies", "type": "movie"},
-        {"id": "top_movies", "name": "Popular Movies", "type": "movie"},
-        {"id": "latest_series", "name": "Latest Series", "type": "series"},
-        {"id": "top_series", "name": "Popular Series", "type": "series"},
     ]
     try:
         for c in await db.get_custom_catalogs():
